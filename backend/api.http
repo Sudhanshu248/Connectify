@@ -1,0 +1,111 @@
+POST http://localhost:3002/register HTTP/1.1
+content-Type: application/json
+
+{ 
+    "username": "yourUsername",
+    "password": "yourPassword", 
+    "email": "yourEmail@example.com",
+    "name": "Your Name"
+}
+
+###
+POST http://localhost:3002/user/register HTTP/1.1
+content-Type: application/json
+
+{ 
+    "username": "@nshu",
+    "password": "an24",
+    "email": "anshu@gmail.com",
+    "name": "Anshu "
+}
+
+###
+POST http://localhost:3002/register HTTP/1.1
+content-Type: application/json
+
+{
+    "username": "rahulKumar",
+    "password": "r2k",
+    "email": "rahulKumar@example.com",
+    "name": "Rahul Kumar"
+}
+
+###
+POST http://localhost:3002/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "anshu@gmail.com",
+    "password": "an24"
+}
+
+###
+POST http://localhost:3002/login HTTP/1.1
+Content-Type: application/json
+
+{
+   "email": "yourEmail@example.com",
+   "password": "yourPassword"
+}
+
+###
+POST http://localhost:3002/login HTTP/1.1
+Content-Type: application/json
+ 
+{
+   "email": "rahulKumar@example.com",
+   "password": "r2k"
+}
+
+###
+GET http://localhost:3002/get_user_and_profile HTTP/1.1
+Content-Type: application/json
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFmOWNiYjI5NjMzM2RkN2Q5ZmFkOSIsImlhdCI6MTc0NTMyMTExMiwiZXhwIjoxNzQ1MzI0NzEyfQ.lZZYKPTGmN0jU1wWzvVBfG8Bo_zrymWf6iPMSk92P7I"
+}
+
+
+###
+GET http://localhost:3002/get_user_and_profile HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFlZGYzZTZmOGU5YjQyODQ0NjU3OSIsImlhdCI6MTc0MzkwODM0MiwiZXhwIjoxNzQzOTExOTQyfQ.EIO3QuypLTzpHZjfEaXuJZl_CLCzfvrBT1IzQaSyZwA"
+}
+
+###
+GET http://localhost:3002/get_user_and_profile HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZjFmOWNiYjI5NjMzM2RkN2Q5ZmFkOSIsImlhdCI6MTc0MzkxMTM3NSwiZXhwIjoxNzQzOTE0OTc1fQ.Fu6lnmSlHp_oZF7B3kAXcw2oeQEwpjhcnNDDc3Htm34"
+}
+
+###
+POST http://localhost:3002/update_profile_data
+Content-Type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGIzZWQyYjZkYTJhZjY5NjVjMTY3YiIsImlhdCI6MTc0NTU2NzQ0N30.V7ueQM-vt8B4wdKC4kH42l1VK8bJQUgsN1iYwpqepkg",
+    "bio" : "Hey! I am a software engineer. I love to work on open source projects and contribute to the community.",
+    "currentPost": "CTO",
+    "pastWork": [
+        {
+            "company": "Microsoft",
+            "position": "CTO",
+            "years": "2+"
+        }
+    ],
+    "education": [
+        {
+            "school": "IIT",
+            "degree": "B.Tech",
+            "fieldOfStudy": "2015-2019"
+        }
+    ]
+}
+
+###
+GET http://localhost:3002/user/get_all_users HTTP/1.1
+Content-Type: application/json

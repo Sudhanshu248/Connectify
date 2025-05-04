@@ -1,0 +1,30 @@
+.container{
+    padding: 1.2rem;
+}
+
+.navBar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navBarOptionContainer{
+    display: flex;
+}
+
+.buttonJoin{
+    background: #eccc3c;
+    border-radius: 10px;
+    padding-block: 0.6rem;
+    padding-inline: 1.2rem;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px){
+    .container{
+        width: 100%;
+    }
+}

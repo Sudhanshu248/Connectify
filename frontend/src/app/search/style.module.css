@@ -1,0 +1,54 @@
+.allUserProfile{
+    max-width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column; 
+    gap: 2rem;
+}
+
+.userCard{
+    display: flex;
+    width: 100%;
+    gap: 1.2rem;
+    padding: 1.3rem;
+    align-items: center;
+    box-shadow: 5px 5px 10px 9px #e3e3e3;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: white;
+    margin-bottom: 1.5rem;
+}
+
+.userCard__image{
+    width: 8%;
+    border-radius: 50%;
+}
+
+.searchPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin: 1rem;
+}
+
+/* .userCard */
+
+@media (max-width: 1000px){
+    .userCard__image{
+        width: 12%;
+    }
+}
+
+@media (max-width: 500px){
+    .text>h1{
+        font-size: 25px;
+    }
+    .text>p{
+        font-size: 15px;
+    }
+    .userCard__image{
+        width: 16%;
+    }
+}

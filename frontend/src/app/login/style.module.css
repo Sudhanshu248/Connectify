@@ -1,0 +1,116 @@
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 89svh;
+    align-items: center;
+    background: rgb(255, 234, 234);
+}
+
+.cardContainer{
+    height: 70%;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 70%;
+    border-radius: 10px;
+    background: white;
+    border: 2px solid red;
+    box-shadow: 10px 10px 15px rgb(173, 173, 173);
+}
+
+.cardContainer_left{
+    flex: 0.7 ;
+    display: flex;
+    padding: 2rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cardContainer_right{
+    flex: 0.3;
+    background: #f1eaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding-inline: 1.2rem;
+}
+
+.cardLeft_heading{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.inputField{
+    padding-inline: 1.3rem;
+    padding-block: 0.8rem;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid silver;
+    width: 100%;
+}
+
+.inputContainers{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    max-width: 400px;
+    margin: 0 auto;
+    gap: 1.5rem;
+}
+
+.inputRow{
+    width: fit-content;
+    display: flex;
+    gap: 1.2rem;
+}
+
+.buttonWithoutline{
+    padding: 0.6rem 1.5rem;
+    background: rgb(171, 152, 152);
+    color: white;
+    width: fit-content;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 1070px){
+    .cardContainer{
+        display: flex;
+        height: 80%;
+        width: 55%;
+        /* flex-wrap: wrap; */
+        flex-direction: column;
+    }
+    .cardContainer_right{
+        flex: 0.2;
+        flex-direction: row;
+        /* gap: 4rem; */
+    }
+    .cardContainer_left{
+        flex: 0.8;
+    }
+}
+
+@media (max-width: 650px){
+    .cardContainer{
+        width: 85%;
+        /* height: 100%; */
+    }
+    .cardContainer_right{
+        gap: 1rem;
+    }
+    .para{
+        font-size: 0.9rem;
+    }
+    #button{
+        width: fit-content;
+        padding: 0.6rem 0.6rem;
+    }
+}
