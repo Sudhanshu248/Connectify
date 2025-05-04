@@ -55,7 +55,7 @@
 }
 
 .card__profileContainer>img{
-    width: 23rem;
+    width: 100%;
     height: auto;
     height: 15rem;
     object-fit: cover;
@@ -130,17 +130,28 @@
     gap: 0.7rem;
 }
 
+.postBox{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
 
-@media  (max-width: 1300px) {
-    .display{
-        display: none;
+
+@media  (max-width: 1200px) {
+    .postBox{
+        flex-direction: column; 
+    }
+    .postCard{
+        width: 100%;
     }
 
 }
 
 @media only screen and (max-width: 600px){
-    .profileContainer__flex{
-        flex-direction: column;
+    .backDropContainer img{
+        width: 6.5rem;
+        height: 6.5rem;
     }
 }
 

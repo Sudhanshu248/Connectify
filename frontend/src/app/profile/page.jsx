@@ -1,7 +1,7 @@
 "use client"
 
-import UserLayout from "../../layout/UserLayout";
-import DashboardLayout from "../../layout/DashboardLayout";
+import DashboardLayout from "@/layout/DashboardLayout";
+import UserLayout from "@/layout/UserLayout";
 
 
 import { BASE_URL } from "@/config/axiosConfig";
@@ -95,142 +95,144 @@ export default function ProfilePage() {
 
     }
 
- 
+
 
     return(
-        <>
+        <UserLayout>
+            <DashboardLayout> 
 
-        {/* <UserLayout>
-        <DashboardLayout> */}
+            {authState.user && userProfile?.userId && 
 
-        {authState.user && userProfile?.userId && 
+            <div className={styles.container}>
+                <div className={styles.backDropContainer}>
+                    <label htmlFor="profilePictureUpload" className={styles.backDrop__overlay}>
+                        <p> Edit </p>
+                    </label>
 
-        <div className={styles.container}>
-            <div className={styles.backDropContainer}>
-                <label htmlFor="profilePictureUpload" className={styles.backDrop__overlay}>
-                    <p> Edit </p>
-                </label>
+                    <input onChange={(e) => {
+                        updateProfilePicture(e.target.files[0])
+                    }} hidden type="file" id="profilePictureUpload" />
+                    <img src={`${BASE_URL}/uploads/${userProfile?.userId?.profilePicture}`} alt="Profile" />
+                </div>
 
-                <input onChange={(e) => {
-                    updateProfilePicture(e.target.files[0])
-                }} hidden type="file" id="profilePictureUpload" />
-                <img src={`${BASE_URL}/uploads/${userProfile?.userId?.profilePicture}`} alt="Profile" />
-            </div>
+                <div className={styles.profileContainer_details}>    
 
-            <div className={styles.profileContainer_details}>    
+                    <div style={{ display: "flex" , flexDirection: "column" }} >
 
-                <div style={{ display: "flex" , flexDirection: "column" }} >
-
-                    <div  className={styles.profile_sec1}>
-                        <div style={{ display: "flex", width: "fit-content", alignItems: "center", gap: "1.2rem" }}>
-                            <input type="text" className={styles.nameEdit} value={userProfile.userId.name} onChange={(e) => {
-                                setUserProfile({...userProfile, userId: {...userProfile.userId, name: e.target.value}})
-                            }} />
-                            <p  style={{ color: "grey" }}>@{userProfile?.userId?.username}</p>
-                        </div>
-
-                        <div>
-                            <textarea name="" id=""  value={userProfile.bio} onChange={(e) => {
-                                setUserProfile({...userProfile, bio: e.target.value});                    
-                            }}
-                            rows = {Math.max(1, Math.ceil (userProfile.bio.length / 80))}
-                            style={{width: "100%", backgroundColor: "inherit"}}
-                            />
-                        </div>
-                    </div>
-
-                    {/* <div style={{flex: "0.25"}}></div> */}
-
-                    <div className={styles.profile_sec2}>
-                    <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Recent Activity</h3> <hr />
-                    <div style={{display: "flex", flexDirection: "row", gap: "2rem", marginTop: "1.5rem"}}>{userPosts.map((post) => {
-                            
-                     
-                            return(
-                            <div key={post._id} className={styles.postCard}>
-                                <div className={styles.card}>
-                                <div className={styles.card__profileContainer}>
-                                    {post.media !== "" ? <img src={`${BASE_URL}/uploads/${post.media}`}/> : <div style={{width: "3.4rem", height: "3.4rem"}}></div>}
-                                </div>
-
-                                <p>{post.body}</p>
-                                </div>
+                        <div  className={styles.profile_sec1}>
+                            <div style={{ display: "flex", width: "fit-content", alignItems: "center", gap: "1.2rem" }}>
+                                <input type="text" className={styles.nameEdit} value={userProfile.userId.name} onChange={(e) => {
+                                    setUserProfile({...userProfile, userId: {...userProfile.userId, name: e.target.value}})
+                                }} />
+                                <p  style={{ color: "grey" }}>@{userProfile?.userId?.username}</p>
                             </div>
-                            )
-                        })}
+
+                            <div>
+                                <textarea name="" id=""  value={userProfile.bio} onChange={(e) => {
+                                    setUserProfile({...userProfile, bio: e.target.value});                    
+                                }}
+                                rows = {Math.max(1, Math.ceil (userProfile.bio.length / 80))}
+                                style={{width: "100%", backgroundColor: "inherit"}}
+                                />
+                            </div>
+                        </div>
+
+                        {/* <div style={{flex: "0.25"}}></div> */}
+
+                        <div className={styles.profile_sec2}>
+                        <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Recent Activity</h3> <hr />
+                        <div className={styles.postBox}>{userPosts.map((post) => {
+                                
+
+                         
+                                return(
+                                <div key={post._id} className={styles.postCard}>
+                                    <div className={styles.card}>
+                                    <div className={styles.card__profileContainer}>
+                                        {post.media !== "" ? <img src={`${BASE_URL}/uploads/${post.media}`}/> : <div style={{width: "3.4rem", height: "3.4rem"}}></div>}
+                                    </div>
+
+                                    <p>{post.body}</p>
+                                    </div>
+                                </div>
+                                )
+                            })}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className={styles.profile_sec2}>
-                    <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Work History</h3> <hr />
+                <div className={styles.profile_sec2}>
+                        <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Work History</h3> <hr />
 
-                    <div className={styles.workHistoryContainer}>
-                            {
-                                userProfile?.pastWork?.map((work, index) => {
-                                    return (
-                                        <div key={index} className={styles.workHistoryCard}>
-                                            <h3 style={{fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.8rem", marginBottom: "1rem"}}>
-                                                {work.company}
-                                            </h3>
-                                            <p ><span style={{fontWeight: "bold"}}>Position:</span> {work.postion}</p>
-                                      
+                        <div className={styles.workHistoryContainer}>
+                                {
+                                    userProfile?.pastWork?.map((work, index) => {
+                                        return (
+                                            <div key={index} className={styles.workHistoryCard}>
+                                                <h3 style={{fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.8rem", marginBottom: "1rem"}}>
+                                                    {work.company}
+                                                </h3>
+                                                <p ><span style={{fontWeight: "bold"}}>Position:</span> {work.postion}</p>
+                                            
 
-                                      <p> <span style={{fontWeight: "bold"}}>Work: </span> {work.years} Years</p>
-                                        </div>
-                                    )
-                                })
-                            }
+                                            <p> <span style={{fontWeight: "bold"}}>Work: </span> {work.years} Years</p>
+                                            </div>
+                                        )
+                                    })
+                                }
 
-                            <div className={styles.updateProfileBtn} onClick={() => {
-                                setIsModalOpen(true)
-                                }}>
-                                Add Work
-                            </div>
-                    </div>
-            </div>
-
-            {userProfile != authState.user && 
-                <div onClick={() => {
-                    updateProfileData();
-
-                }} className={styles.updateProfileBtn}>
-                    Update Profile
+                                <div className={styles.updateProfileBtn} onClick={() => {
+                                    setIsModalOpen(true)
+                                    }}>
+                                    Add Work
+                                </div>
+                        </div>
                 </div>
 
+                {userProfile != authState.user && 
+                    <div onClick={() => {
+                        updateProfileData();
+
+                    }} className={styles.updateProfileBtn}>
+                        Update Profile
+                    </div>
+
+                }
+
+            </div>  
             }
 
-        </div>  
-        }
 
+            {isModalOpen && 
+                <div onClick={() => {
+                    setIsModalOpen(false)
+                    }} className={styles.commentsContainer}>
 
-        {isModalOpen && 
-            <div onClick={() => {
-                setIsModalOpen(false)
-                }} className={styles.commentsContainer}>
+                        <div onClick={(e) => {
+                        e.stopPropagation();
+                        }} className={styles.allCommentsContainer}>
 
-                    <div onClick={(e) => {
-                    e.stopPropagation();
-                    }} className={styles.allCommentsContainer}>
-        
-                        <input onChange={handleWorkInputChange} name="comapany" className={styles.inputField} type="text" placeholder="Enter Company" />
-                        <input onChange={handleWorkInputChange} name="position" className={styles.inputField} type="text" placeholder="Enter Position" />
-                        <input onChange={handleWorkInputChange} name="years" className={styles.inputField} type="number" placeholder="Work Tenure" />
+                            <input onChange={handleWorkInputChange} name="company" className={styles.inputField} type="text" placeholder="Enter Company" />
+                            <input onChange={handleWorkInputChange} name="postion" className={styles.inputField} type="text" placeholder="Enter Position" />
+                            <input onChange={handleWorkInputChange} name="years" className={styles.inputField} type="number" placeholder="Work Tenure" />
 
-                        <div onClick={() => {
-                            setUserProfile({...userProfile.pastWork, inputData})
-                            setIsModalOpen(false)
-                        }} className={styles.updateProfileBtn}>
-                            Add Work
+                            <div onClick={() => {
+                                setUserProfile({
+                                    ...userProfile,
+                                    pastWork: [...(userProfile.pastWork || []), inputData]
+                                });
+                                setIsModalOpen(false);
+                            }} className={styles.updateProfileBtn}>
+                                Add Work
+                            </div>
+
                         </div>
-        
-                    </div>
-            </div>
-        }
-    </>
-        )
-}
+                </div>
+            }
+            </DashboardLayout>
+        </UserLayout> 
 
-{/* </DashboardLayout>
-</UserLayout> */}
+    )
+
+}

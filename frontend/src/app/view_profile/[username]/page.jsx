@@ -130,7 +130,7 @@ export default function ViewProfilePage({ params }) {
                             {/* <div style={{ flex: "0.3" }}> */}
                             <div className={styles.profile_sec2}>
                                   <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Recent Activity</h3> <hr />
-                                  <div style={{display: "flex", flexDirection: "row", gap: "2rem", marginTop: "1.5rem"}}>{userPosts.map((post) => {
+                                  <div className={styles.postBox}>{userPosts.map((post) => {
                                     return(
                                       
                                         <div key={post._id} className={styles.postCard}>

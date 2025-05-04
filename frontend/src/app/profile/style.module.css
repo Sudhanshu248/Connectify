@@ -54,7 +54,7 @@
 }
 
 .card__profileContainer>img{
-    width: 23rem;
+    width: 100%;
     height: auto;
     height: 15rem;
     object-fit: cover;
@@ -62,8 +62,8 @@
 }
 
 .backDrop__overlay{
-    width: 10em;
-    height: 10em;
+    width: 8em;
+    height: 8em;
     object-fit: cover;
     border-radius: 50%;
     position: absolute;
@@ -78,6 +78,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.4s;
 }
 
 .backDrop__overlay:hover{
@@ -161,10 +162,14 @@
 }
 
 .nameEdit{
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* smaller font size */
     font-weight: bold;
-    width: fit-content;
+    width: 150px; /* fixed width to minimize size */
     background-color: inherit;
+    max-width: 150px !important; /* limit max width */
+    padding: 4px 8px; /* add some padding */
+    border: 1px solid #ccc; /* optional border for better visibility */
+    border-radius: 4px; /* rounded corners */
 }
 
 .updateProfileBtn{
@@ -231,4 +236,27 @@
     border-radius: 10px;
     border: 1px solid silver;
     width: 100%;
+}
+
+.postBox{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+@media  (max-width: 1200px) {
+    .postBox{
+        flex-direction: column; 
+    }
+    .postCard{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    .backDropContainer img{
+        width: 6.5rem;
+        height: 6.5rem;
+    }
 }

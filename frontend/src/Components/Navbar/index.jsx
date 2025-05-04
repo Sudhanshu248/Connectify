@@ -18,16 +18,16 @@ export default function NavbarComponent(){
 
     const dispatch = useDispatch();
  
-    useEffect(() => {
-        if(loggedIn){
-            router.push("/dashboard");
-        }
-    }, [loggedIn, router]);
+    // useEffect(() => {
+    //     if(loggedIn){
+    //         router.push("/dashboard");
+    //     }
+    // }, [loggedIn, router]);
 
     return(
         <div className={styles.container}>
             <div className={styles.navBar}>
-                <h1 style={{cursor: "pointer"}} onClick={() => {router.push("/")}}>Connectify</h1>
+             <img src="/logo.png" alt="logo.png" className={styles.logo}  onClick={() => {router.push("/")}} /> 
 
                 <div className={styles.navBarOptionContainer}>
 

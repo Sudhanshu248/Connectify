@@ -90,6 +90,6 @@ export default function MyConnectionsPage() {
                     </div>
                     </div>
             </DashboardLayout>
-        </UserLayout>
+         </UserLayout>
     )
 }

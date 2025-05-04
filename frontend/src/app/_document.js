@@ -5,7 +5,7 @@ export default function Document() {
         <Html lang="en">
             <Head>
 <link rel="prefetch" href="/static/css/app/profile/page.css" />
-
+        
   <link rel="stylesheet" href="/static/css/app/profile/page.css" />
 </Head>
 
