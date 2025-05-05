@@ -13,7 +13,9 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
     rules: {
-      "react/no-unescaped-entities": 0
+      "react/no-unescaped-entities": 0,
+      "@next/next/no-document-import-in-page": "off",
+      "@next/next/no-css-tags": "off"
     }
   }
 ];
