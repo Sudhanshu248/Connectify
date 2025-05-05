@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'https://connectify-cyan.vercel.app'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
