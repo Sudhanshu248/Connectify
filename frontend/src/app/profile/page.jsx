@@ -78,7 +78,7 @@ export default function ProfilePage() {
             token: localStorage.getItem("token"),
             bio: userProfile.bio,
             currentPost: userProfile.currentPost,
-            passWork: userProfile.pastWork,
+            pastWork: userProfile.pastWork,
             education: userProfile.education
         });
 
