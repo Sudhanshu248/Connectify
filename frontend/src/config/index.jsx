@@ -1,5 +1,5 @@
 const {default: axios} = require("axios");
 
 export const clientServer = axios.create({
-    baseURL: 'http://localhost:3002',
+    baseURL: 'https://connectify-4cpk.onrender.com',
 });
