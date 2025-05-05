@@ -25,13 +25,14 @@ app.use(cors({
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json());
 
-// Use all routes
 app.use(postRoutes);
-app.use(userRoutes); // Make sure this is included
+app.use(userRoutes); 
 
 const start = async () => {
+    
     const connectDB = await mongoose.connect(dblink);
 
     app.get("/home", (req, res) => {

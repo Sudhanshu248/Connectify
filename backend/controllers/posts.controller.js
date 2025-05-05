@@ -35,7 +35,9 @@ export const createPost = async(req, res) => {
 }
  
 export const getAllPosts = async (req, res) => {
+
     try{
+
         const posts = await Post.find().populate('userId', 'name username email profilePicture');
         return res.json({posts});
 
@@ -74,19 +76,18 @@ export const deletePost = async (req, res) => {
     }
 }
 
-
-
 export const get_comments_by_post = async (req, res) => {
     const {post_id} = req.query;
 
     try{
+
         const post = await Post.findOne({_id: post_id});
 
         if(!post){
             return res.status(404).json({message: "Post not found"});
         }
 
-const comments = await Comment.find({postId: post_id}).populate('userId', 'username name profilePicture');
+        const comments = await Comment.find({postId: post_id}).populate('userId', 'username name profilePicture');
 
         return res.json(comments.reverse());
 

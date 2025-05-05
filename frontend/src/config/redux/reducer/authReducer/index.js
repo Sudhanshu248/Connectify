@@ -2,8 +2,7 @@ const {createSlice} = require("@reduxjs/toolkit");
 const {loginUser, registerUser, getAboutUser, getAllUsers, getConnectionsRequest, getMyConnectionRequests} = require("../../action/authAction");
  
 const initialState = {
-    user: undefined,  // Changed from [] to null for correct user object initialization
-    // profile: null, // Added profile field
+    user: undefined,  
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -60,7 +59,6 @@ const authSlice = createSlice({
             }
         })
 
-
         .addCase(registerUser.pending, (state) => {
             state.isLoading = true;
             state.message = "Processing your registration...";
@@ -82,7 +80,6 @@ const authSlice = createSlice({
             }
         })
 
-
         .addCase(getAboutUser.pending, (state) => {
             state.isLoading = true;
             state.profileFetched = false;
@@ -91,7 +88,7 @@ const authSlice = createSlice({
             state.isLoading = false;
             state.isError = false;
             state.profileFetched = true;
-            state.user = action.payload; // Store the entire response
+            state.user = action.payload; 
             state.loggedIn = true;
         })
         .addCase(getAboutUser.rejected, (state, action) => {
@@ -104,7 +101,6 @@ const authSlice = createSlice({
                 state.message = String(action.payload);
             }
         })
-
         
         .addCase(getAllUsers.fulfilled, (state, action) => {
             state.isLoading = false;
@@ -119,11 +115,9 @@ const authSlice = createSlice({
         .addCase(getConnectionsRequest.rejected, (state, action) => {
             state.message = action.payload
         })
-        
 
         .addCase(getMyConnectionRequests.fulfilled, (state, action) => {
             state.connectionRequest = action.payload
-            console.log("Connection Request = ", state.connectionRequest);
         })
         .addCase(getMyConnectionRequests.rejected, (state, action) => {
             state.message = action.payload

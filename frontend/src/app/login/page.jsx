@@ -29,7 +29,6 @@ export default function LoginComponent() {
     dispatch(emptyMessage());
   }, [userLoginMethod, dispatch]);
 
-  // New useEffect to fetch user profile after login
   useEffect(() => {
     if(authState.loggedIn){
       const token = localStorage.getItem("token");
@@ -40,12 +39,10 @@ export default function LoginComponent() {
   }, [authState.loggedIn, dispatch]);
 
   const handleRegister = () => {
-    console.log("Registering...");
     dispatch(registerUser({username, password, email, name}));
   };
 
   const handleLogin = () => { 
-    console.log("Logging...");
     dispatch(loginUser({email, password}));
   };
 
@@ -67,8 +64,8 @@ export default function LoginComponent() {
                 </div>
               )}
 
-<input onChange={(e) => setEmailAddress(e.target.value)} className={styles.inputField} type="text" placeholder="Email" />
-<input onChange={(e) => setPassword(e.target.value)} className={styles.inputField} type="password" placeholder="Password" />
+              <input onChange={(e) => setEmailAddress(e.target.value)} className={styles.inputField} type="text" placeholder="Email" />
+              <input onChange={(e) => setPassword(e.target.value)} className={styles.inputField} type="password" placeholder="Password" />
 
               <div onClick={() => {
                 if (userLoginMethod) {
@@ -84,7 +81,6 @@ export default function LoginComponent() {
             
           </div>
 
-
           <div className={styles.cardContainer_right}>
               {userLoginMethod ? <p className={styles.para}>Don't Have an Account?</p> : <p className={styles.para}>Already Have an Account?</p>}
                 <div onClick={() => {
@@ -93,7 +89,6 @@ export default function LoginComponent() {
                   <p className={styles.button}>{userLoginMethod ? "Sign Up" : "Sign In"}</p>
                 </div>
           </div>
-
 
         </div>
       </div>

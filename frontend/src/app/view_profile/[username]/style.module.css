@@ -85,19 +85,16 @@
 
 .profile_sec1{
     background-color: whitesmoke;
-    /* flex: 0.5 ; */
     border: 1px solid silver;
     border-radius: 20px;
     padding: 1.5rem;
     width: 100%;
     margin: 1.2rem 0;
-
 }
 
 .profile_sec2{
     margin: 1.2rem 0;
     background-color: whitesmoke;
-    /* flex: 0.5 ; */
     border: 1px solid silver;
     border-radius: 20px;
     padding: 1rem;
@@ -110,15 +107,12 @@
     padding-top: 1.4rem;
     width: 100%;
     flex-wrap: wrap;
-    
 }
 
 .workHistoryCard{
     min-width: 100%;
     padding-inline: 2.5rem;
     padding-block: 1rem;
-    /* border-radius: 10px; */
-    /* box-shadow: 10px 10px 15px rgb(173, 173, 173); */
     background: white;
     padding: 1rem;
     box-shadow: 5px 5px 10px 10px #e3e3e3;
@@ -137,7 +131,6 @@
     margin-top: 1.5rem;
 }
 
-
 @media  (max-width: 1200px) {
     .postBox{
         flex-direction: column; 
@@ -145,7 +138,6 @@
     .postCard{
         width: 100%;
     }
-
 }
 
 @media only screen and (max-width: 600px){
@@ -154,4 +146,3 @@
         height: 6.5rem;
     }
 }
-

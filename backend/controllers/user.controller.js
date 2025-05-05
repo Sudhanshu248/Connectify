@@ -43,7 +43,9 @@ dotenv.config();
 const JWT_SECRETS = process.env.JWT_SECRET
 
 export const register = async (req, res) => {
+
     try{
+
         const {name, email, password, username} = req.body;
 
         if(!name || !email || !password || !username) return res.status(400).json({message: "All fields are required"});
@@ -82,12 +84,15 @@ export const register = async (req, res) => {
 }
 
 export const login = async (req, res) => {
+
     try {
+    
         const { email, password } = req.body;
         
         const response = await User.findOne({
             email:email
         })
+
         if(!response){
             res.status(401).send({
                 Message:"Your email is not correct"
@@ -98,7 +103,7 @@ export const login = async (req, res) => {
 
         if(passwordmatch){
             const token = jwt.sign({ id: response._id}, JWT_SECRETS);
-            console.log(token);
+
             response.token = token;
             await response.save();
             res.json({
@@ -106,7 +111,6 @@ export const login = async (req, res) => {
             })
         }
         else{
-    
             res.status(401).send({
                 Message:"Incorrect Password"
             })
@@ -139,10 +143,10 @@ export const uploadProfilePicture = async (req, res) => {
     } catch (error) {
       return res.status(500).json({ message: error.message });
     }
-  };
-  
+}; 
 
 export const updateUserProfile = async (req, res) => {
+
     try{
 
         const {token, ...newUserData} = req.body;
@@ -160,22 +164,24 @@ export const updateUserProfile = async (req, res) => {
         if(existingUser){
             if(existingUser || String(existingUser._id) !== String(user._id)){
             return res.status(400).json({message: "User already exists"});
+            }
         }
-    }
-    Object.assign(user, newUserData);
 
-    await user.save();
+        Object.assign(user, newUserData);
 
-    return res.json({message: "User Updated"});
+        await user.save();
 
-    }
-    catch(error){
+        return res.json({message: "User Updated"});
+
+    }catch(error){
         return res.status(500).json({message: error.message});
     }
 }
 
 export const getUserAndProfile = async (req, res) => {
+
     try {
+    
         const { token } = req.query;
 
         if (!token) {
@@ -183,8 +189,11 @@ export const getUserAndProfile = async (req, res) => {
         }
 
         let decoded;
+
         try {
+
             decoded = jwt.verify(token, JWT_SECRETS);
+        
         } catch (jwtError) {
             if (jwtError.name === 'TokenExpiredError') {
                 return res.status(401).json({ message: "Token expired" });
@@ -192,10 +201,8 @@ export const getUserAndProfile = async (req, res) => {
             return res.status(401).json({ message: "Invalid token" });
         }
 
-        
-
         const user = await User.findById(decoded.id);
-        console.log(user.name);
+
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -210,48 +217,10 @@ export const getUserAndProfile = async (req, res) => {
     }
 }
 
-
-
-
-//     try {
-//         const authHeader = req.headers.authorization;
-//         if (!authHeader) {
-//             return res.status(401).json({ message: "No authorization header" });
-//         }
-
-//         const token = authHeader.split(' ')[1];
-//         if (!token) {
-//             return res.status(401).json({ message: "No token provided" });
-//         }
-
-//         try {
-//             const decoded = jwt.verify(token, JWT_SECRETS);
-//             if (!decoded || !decoded.id) {
-//                 return res.status(401).json({ message: "Invalid token" });
-//             }
-
-//             const user = await User.findById(decoded.id);
-            
-
-//             const populatedProfile = await Profile.findOne({ userId: user._id })
-//                 .populate('userId', 'name email username profilePicture');
-                    
-//             return res.json(populatedProfile);
-
-//         } catch (jwtError) {
-//             if (jwtError.name === 'TokenExpiredError') {
-//                 return res.status(401).json({ message: "Token expired" });
-//             }
-//             return res.status(401).json({ message: "Invalid token" });
-//         }
-
-//     } catch(error) {
-//         return res.status(500).json({ message: error.message });
-//     }
-// }
-
 export const updateProfileData = async (req, res) => {
+
     try {
+    
         const {token, ...newProfileData} = req.body;
 
         const userProfile = await User.findOne({token: token});
@@ -270,7 +239,9 @@ export const updateProfileData = async (req, res) => {
 }
 
 export const getAllUserProfile = async (req, res) => {
+
     try{
+    
         const profiles = await Profile.find().populate('userId', 'name username email profilePicture');
 
         return res.json({profiles})
@@ -281,9 +252,10 @@ export const getAllUserProfile = async (req, res) => {
 }
 
 export const downloadProfile = async (req, res) => {
+
     try {
+    
         const { id } = req.query;
-        // const user_id = req.query.id;
         
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ message: "Invalid user ID format" });
@@ -374,14 +346,14 @@ export const whatAreMyConnections = async (req, res) => {
     try{
         
         const user = await User.findOne({ token });
-        console.log(user);
+        
         if(!user){
             return res.status(404).json({message: "User not found"});
         }
 
         const connections = await ConnectionRequest.find({connectionId: user._id})
             .populate('userId', 'name username email profilePicture');
-        console.log("Connect = ", connections);
+
         return res.json(connections);
 
     }catch(err){
@@ -389,11 +361,11 @@ export const whatAreMyConnections = async (req, res) => {
     }
 }
 
-
 export const acceptConnectionRequest = async (req, res) => {
     const {token, requestId, action_type} = req.body;
 
     try{
+
         const user = await User.findOne({token: token});
 
         if(!user){

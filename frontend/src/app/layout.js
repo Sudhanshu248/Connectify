@@ -1,8 +1,7 @@
-// app/layout.js
 import React, { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Providers from './provider'; // ✅ relative path, no file extension
+import Providers from './provider'; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +24,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
- 
       <body>
         <Providers>
           <Suspense fallback={<div>Loading...</div>}>

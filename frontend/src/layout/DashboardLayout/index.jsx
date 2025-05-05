@@ -72,13 +72,10 @@ export default function DashboardLayout({ children }) {
                         {authState.all_profiles_fetched && Array.isArray(authState.all_users) && authState.all_users.map((user) => {
 
                             return(
-                                    <div key={user._id} className={styles.userProfile}>
+                                <div key={user._id} className={styles.userProfile}>
                                     <img className={styles.userProfile_image} src={`${BASE_URL}/uploads/${user.userId?.profilePicture}`} alt="" />
-                                    {/* <h1>{user.userId?.name}</h1> */}
-                                    <p>{user.userId?.name}</p>
-                                    {/* <p>{user.userId?.email}</p> */}
+                                    <p>{user.userId?.name}</p>                                    {/* <p>{user.userId?.email}</p> */}
                                 </div>
-                                
                             )
 
                         })}
@@ -113,10 +110,7 @@ export default function DashboardLayout({ children }) {
                         </svg>
                     </div>
                 </div>
-
-                
             </div>
-
         </div>
     )
 }

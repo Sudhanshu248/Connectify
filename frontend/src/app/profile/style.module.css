@@ -109,19 +109,16 @@
 
 .profile_sec1{
     background-color: whitesmoke;
-    /* flex: 0.5 ; */
     border: 1px solid silver;
     border-radius: 20px;
     padding: 1.5rem;
     width: 100%;
     margin: 1.2rem 0;
-
 }
 
 .profile_sec2{
     margin: 1.2rem 0;
     background-color: whitesmoke;
-    /* flex: 0.5 ; */
     border: 1px solid silver;
     border-radius: 20px;
     padding: 1rem;
@@ -134,15 +131,12 @@
     padding-top: 1.4rem;
     width: 100%;
     flex-wrap: wrap;
-    
 }
 
 .workHistoryCard{
     min-width: 100%;
     padding-inline: 2.5rem;
     padding-block: 1rem;
-    /* border-radius: 10px; */
-    /* box-shadow: 10px 10px 15px rgb(173, 173, 173); */
     background: white;
     padding: 1rem;
     box-shadow: 5px 5px 10px 10px #e3e3e3;
@@ -162,14 +156,14 @@
 }
 
 .nameEdit{
-    font-size: 1.5rem; /* smaller font size */
+    font-size: 1.5rem; 
     font-weight: bold;
-    width: 150px; /* fixed width to minimize size */
+    width: 150px; 
     background-color: inherit;
-    max-width: 150px !important; /* limit max width */
-    padding: 4px 8px; /* add some padding */
-    border: 1px solid #ccc; /* optional border for better visibility */
-    border-radius: 4px; /* rounded corners */
+    max-width: 150px !important; 
+    padding: 4px 8px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
 }
 
 .updateProfileBtn{

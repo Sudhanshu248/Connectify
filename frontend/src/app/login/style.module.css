@@ -85,13 +85,11 @@
         display: flex;
         height: 80%;
         width: 55%;
-        /* flex-wrap: wrap; */
         flex-direction: column;
     }
     .cardContainer_right{
         flex: 0.2;
         flex-direction: row;
-        /* gap: 4rem; */
     }
     .cardContainer_left{
         flex: 0.8;
@@ -101,7 +99,6 @@
 @media (max-width: 650px){
     .cardContainer{
         width: 85%;
-        /* height: 100%; */
     }
     .cardContainer_right{
         gap: 1rem;

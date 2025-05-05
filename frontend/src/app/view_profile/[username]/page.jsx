@@ -13,11 +13,9 @@ import { authState } from "@/config/redux/reducer/authReducer";
 import { use } from "react"; 
 
 export default function ViewProfilePage({ params }) {
-    // const username = params.username;
     const { username } = use(params);
 
     const authState = useSelector((state) => state.auth);
-    // const Router = useRouter();
     const dispatch = useDispatch();
     const postReducer = useSelector((state) => state.postReducer);
     const [userProfile, setUserProfile] = useState(null);
@@ -33,14 +31,17 @@ export default function ViewProfilePage({ params }) {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            try {
-                const response = await clientServer.get("/user/get_profile_based_on_username", {
-                    params: { username }
-                });
-                setUserProfile(response.data.profile);
-            } catch (error) {
-                console.error("Error fetching profile:", error);
-            }
+          try {
+
+              const response = await clientServer.get("/user/get_profile_based_on_username", {
+                  params: { username }
+              });
+
+              setUserProfile(response.data.profile);
+
+              } catch (error) {
+              console.error("Error fetching profile:", error);
+              }
         };
 
         fetchProfile();
@@ -55,7 +56,6 @@ export default function ViewProfilePage({ params }) {
     }, [postReducer.posts])
 
     useEffect(() => {
-      console.log(authState .connections, userProfile?.userId?._id)
       if(authState.connections.some(user => user.connectionId._id === userProfile?.userId?._id)) {
         setIsCurrentUserInConnection(true);
         if(authState.connections.find(user => user.connectionId._id === userProfile.userId._id).status_accepted === true ) {
@@ -73,7 +73,6 @@ export default function ViewProfilePage({ params }) {
 
     useEffect(() => {
       getUsersPosts();
-
     }, [])
 
     if (!userProfile) return <div>Loading profile...</div>;
@@ -99,70 +98,69 @@ export default function ViewProfilePage({ params }) {
                                 </div>
 
                                 <div style={{display: "flex", alignItems: "center", gap: "1.5rem", margin: "1.2rem 0 "}}>
-                                  {isCurrentUserInConnection ? 
+                                  {isCurrentUserInConnection
+                                    ? 
                                     <button className={styles.connectedButton} style={{fontWeight: "200", fontSize: " 0.9rem"}}>{isConnectionNull ? "Pending" : "Connected"} </button>
                                     : 
                                     <button onClick= {() => {
                                       dispatch(sendConnectionRequest({token: localStorage.getItem("token"), user_id: userProfile.userId._id}));
-                                    }} className={styles.connectBtn} style={{fontWeight: "200", fontSize: " 0.9rem"}}>Connect</button>}
+                                    }} className={styles.connectBtn} style={{fontWeight: "200", fontSize: " 0.9rem"}}>Connect</button>
+                                  }
 
-
-                                      <div onClick={async () => {
-                                        const response = await clientServer.get(`/user/download_resume?id=${userProfile.userId._id}`);
-                                        window.open(`${BASE_URL}/uploads/${response.data.message}`, "_blank")
+                                  <div onClick={async () => {
+                                    const response = await clientServer.get(`/user/download_resume?id=${userProfile.userId._id}`);
+                                    window.open(`${BASE_URL}/uploads/${response.data.message}`, "_blank")
                                     }} style={{cursor: "pointer"}} className={styles.connectBtn}>
-                                      <svg style={{width: "1.1em ", height: "1em"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                      </svg>
+
+                                    <svg style={{width: "1.1em ", height: "1em"}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                    </svg>
+
                                     &nbsp; <span style={{fontWeight: "400", fontSize: " 0.9rem"}}>Resume</span>
-                                    </div>
+                                  </div>
                                 </div>
-                                
 
                                 <div>
                                   <p>{userProfile.bio}</p>
                                 </div>
 
                             </div>
-                            {/* <div style={{flex: "0.2"}}></div> */}
 
                         </div>
-                            {/* <div style={{ flex: "0.3" }}> */}
                             <div className={styles.profile_sec2}>
+
                                   <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Recent Activity</h3> <hr />
                                   <div className={styles.postBox}>{userPosts.map((post) => {
                                     return(
                                       
                                         <div key={post._id} className={styles.postCard}>
-                                        <div className={styles.card}>
-                                          <div className={styles.card__profileContainer}>
-                                            {post.media !== "" ? <img src={`${BASE_URL}/uploads/${post.media}`}/> : <div style={{width: "3.4rem", height: "3.4rem"}}></div>}
-                                          </div>
+                                          <div className={styles.card}>
+                                            <div className={styles.card__profileContainer}>
+                                              {post.media !== "" ? <img src={`${BASE_URL}/uploads/${post.media}`}/> : <div style={{width: "3.4rem", height: "3.4rem"}}></div>}
+                                            </div>
 
-                                          <p style={{paddingLeft: "0.5rem"}}>{post.body}</p>
+                                            <p style={{paddingLeft: "0.5rem"}}>{post.body}</p>
+                                          </div>
                                         </div>
-                                      </div>
-                                    )
-                                  })}
-                                      </div>
+                                      )
+                                    })}
+                                  </div>
 
                             </div>
 
                     </div>
 
                     <div className={styles.profile_sec2}>
-                    <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Work History</h3> <hr />
+                      <h3 style={{margin: "0.5rem 0.2rem 1rem"}}>Work History</h3> <hr />
 
                       <div className={styles.workHistoryContainer}>
                               {
                                 userProfile.pastWork.map((work, index) => {
                                   return (
                                     <div key={index} className={styles.workHistoryCard}>
-                                      <h3 style={{fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.8rem", marginBottom: "1rem"}}>{work.company} 
-                                      </h3>
+                                      <h3 style={{fontWeight: "bold", display: "flex", alignItems: "center", gap: "0.8rem", marginBottom: "1rem"}}>{work.company} </h3>
                                       <p ><span style={{fontWeight: "bold"}}>Position:</span> {work.postion}</p>
                                       
-
                                       <p> <span style={{fontWeight: "bold"}}>Work: </span> {work.years} Years</p>
                                     </div>
                                   )
@@ -170,7 +168,6 @@ export default function ViewProfilePage({ params }) {
                               }
                       </div>
                     </div>
-
                 </div>
             </DashboardLayout>
         </UserLayout>
