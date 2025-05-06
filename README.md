@@ -12,6 +12,30 @@ Connectify is a dynamic web-based platform designed to facilitate seamless user 
 - **Scalable Backend**: Robust server-side logic to handle increasing user demands.
 
 
+<h1>📖 How It Works</h1>
+
+1. **User Registration & Login**:
+   - Users sign up with their email and password.
+   - Authentication is handled securely with token-based authentication (e.g., JWT).
+
+2. **Creating Post**:
+   - Users can create post of their activity.
+
+2. **Edit Profile and download Resume**:
+   - Users can edit his/her profile and download resume based on his/her profile in Pdf format.
+
+2. **Search People and Connect with them**:
+   - Users can search people and can connect with them.
+
+3. **Data Management**:
+   - User data and posts are stored in a MongoDB database.
+   - Backend APIs handle data retrieval and updates efficiently.
+
+4. **Interactive Interface**:
+   - The React.js frontend provides a smooth, user-friendly experience.
+   - Responsive design ensures compatibility across devices.
+     
+
 <h1>🛠️ Tech Stack</h1> 
 
 ### Frontend
