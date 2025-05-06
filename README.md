@@ -25,7 +25,7 @@ Connectify is a dynamic web-based platform designed to facilitate seamless user 
    - Users can edit his/her profile and download resume based on his/her profile in Pdf format.
 
 2. **Search People and Connect with them**:
-   - Users can search people and can connect with them.
+   - Users can search people and connect with them.
 
 3. **Data Management**:
    - User data and posts are stored in a MongoDB database.
